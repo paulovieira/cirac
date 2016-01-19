@@ -1,21 +1,15 @@
-
 var Path = require("path");
 var Fs = require("fs");
-var Nunjucks = require('hapi-nunjucks');
+
+var internals = {};
 
 // absolute paths
-var internals = {
-    rootDir:      Path.resolve(__dirname, ".."),
-    viewsDir:     Path.resolve(__dirname, "..", "lib/web/views"),
-    tilesDir:     Path.resolve(__dirname, "..", "tiles"),
-    // tilesDir:  "/home/pvieira/tilemill-files/export",
-    //tilesExamplesDir:     Path.resolve(__dirname, "..", "tiles-examples"),
-    env:process.env.NODE_ENV 
-};
-
+internals.rootDir = Path.resolve(__dirname, "..");
+internals.viewsDir = Path.join(internals.rootDir, "lib/web/views");
+internals.tilesDir = Path.join(internals.rootDir, "tiles");
 internals.bundles = JSON.parse(Fs.readFileSync(Path.join(internals.rootDir, "bundles.json"), "utf8"));
 
-module.exports = {
+internals.defaultOptions = {
 
     host: "localhost",
     port: 5000,
@@ -25,31 +19,32 @@ module.exports = {
     rootDir: internals.rootDir,
     viewsDir: internals.viewsDir,
     tilesDir: internals.tilesDir,
-    tilesExamplesDir: internals.tilesExamplesDir,
-    
     bundles: internals.bundles,
     
     hapi: {
+        
+        // documentation: https://github.com/hapijs/joi#validatevalue-schema-options-callback
+        joi: {
 
-        // options for the Hapi.Server object (to be used in the main index.js)
-        server: {
-            connections: {
-                router: {
-                    isCaseSensitive: false,
-                    stripTrailingSlash: true
-                }            
-            }
-        },
+            abortEarly: true,  // returns all the errors found (does not stop on the first error)
+            stripUnknown: true,  // delete unknown keys; this means that when the handler executes, only the keys that are explicitely stated
+            // in the schema will be present in request.payload and request.query 
+            convert: true
+    /*
 
-        // options for the views (to be used in the main index.js)
-        views: {
-            path: internals.viewsDir,
-            allowAbsolutePaths: true,
-            engines: {
-                "html": Nunjucks
-            },
-        },
+            allowUnknown: false, // allows object to contain unknown keys; note that is stipUnknown option is used, this becomes obsolete (because all unknown keys will be removed before the check for unknown keys is done)
+
+            convert: ...
+            skipFunctions: ...
+            stripUnknown: ...
+            language: ...
+            presence: ...
+            context: ...
+    */
+        }
+
     },
 
 };
 
+module.exports = internals.defaultOptions;

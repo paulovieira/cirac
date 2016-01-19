@@ -1,0 +1,7 @@
+{
+    "ext": "js,html",
+    "delay": 200,
+    "ignore": [
+        "node_modules/*"
+    ]
+}

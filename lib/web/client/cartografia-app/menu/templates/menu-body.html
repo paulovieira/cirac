@@ -48,6 +48,10 @@ supportsFullscreen: {{ supportsFullscreen }}
 
                     <div style="float: right; display: inline-block; padding-top: 0px;">
 
+                        <a style="display: none;" class="btn btn-primary btn-xs js-remove-layer"  href="#" role="button" data-map-id={{ map.mapId }} title="Remover este mapa">
+                            <i class="fa fa-close" style="color: white;" ></i> 
+                        </a>
+
                         {% if map.hasInfo %}
                         <a class="btn btn-primary btn-xs js-map-more-info"  href="#" role="button" data-map-id={{ map.mapId }} title="Mais informações">
                             <i class="fa fa-info-circle" style="color: white;"></i>
@@ -57,6 +61,8 @@ supportsFullscreen: {{ supportsFullscreen }}
 	    				<a class="btn btn-primary btn-xs js-map-options"  href="#" role="button" data-map-id={{ map.mapId }} title="Opções do mapa">
 	    					<i class="fa fa-cog" style="color: white;" ></i>
 	    				</a>
+
+
                     </div>
                 </div>
             </li>
