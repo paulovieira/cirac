@@ -7,7 +7,7 @@ var internals = {};
 internals.rootDir = Path.resolve(__dirname, "..");
 internals.viewsDir = Path.join(internals.rootDir, "lib/web/views");
 internals.tilesDir = Path.join(internals.rootDir, "tiles");
-internals.bundles = JSON.parse(Fs.readFileSync(Path.join(internals.rootDir, "bundles.json"), "utf8"));
+//internals.bundles = JSON.parse(Fs.readFileSync(Path.join(internals.rootDir, "bundles.json"), "utf8"));
 
 internals.defaultOptions = {
 
@@ -19,7 +19,7 @@ internals.defaultOptions = {
     rootDir: internals.rootDir,
     viewsDir: internals.viewsDir,
     tilesDir: internals.tilesDir,
-    bundles: internals.bundles,
+    //bundles: internals.bundles,
     
     hapi: {
         
