@@ -4,10 +4,10 @@ var Fs = require("fs");
 var internals = {};
 
 // absolute paths
-internals.rootDir = Path.resolve(__dirname, "..");
+internals.rootDir  = Path.join(__dirname, "..");
 internals.viewsDir = Path.join(internals.rootDir, "lib/web/views");
 internals.tilesDir = Path.join(internals.rootDir, "tiles");
-//internals.bundles = JSON.parse(Fs.readFileSync(Path.join(internals.rootDir, "bundles.json"), "utf8"));
+internals.bundles  = JSON.parse(Fs.readFileSync(Path.join(internals.rootDir, "bundles.json"), "utf8"));
 
 internals.defaultOptions = {
 
